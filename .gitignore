@@ -1,0 +1,6 @@
+
+# Ignore Pycache
+
+__pycache__/*
+
+__pychache__
