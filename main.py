@@ -1,4 +1,3 @@
-import explorerhat
 import gui
 import gamelogic
 
