@@ -1,5 +1,5 @@
 import gui
-import gamelogic
 
-print("Hello World!")
+print("Main is running!")
 
+gui.initgui()
