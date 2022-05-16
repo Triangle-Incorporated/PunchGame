@@ -1,9 +1,8 @@
 import guizero as gui
+app = gui.App("this is an app")
 import gamelogic
 
-app = gui.App("this is an app")
-
-playButton = gui.PushButton("Play", command = gamelogic.gameLoop)
+playButton = gui.PushButton(app, text = "Play", command = gamelogic.gameLoop)
 print("Gui works")
 
 def initGui() :

@@ -1,5 +1,5 @@
-import gui
+import display
 
 print("Main is running!")
 
-gui.initgui()
+display.initGui()
