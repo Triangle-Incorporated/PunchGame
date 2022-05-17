@@ -7,4 +7,6 @@ This game depends on Explorerhat for the Raspberry Pi. It also depends on the Py
 
 `pip install pygame`
 
-Finally, this game uses GUIzero. The source code of GUIzero is included, so you don't have to worry about installing it yourself.
+Finally, this game uses GUIzero. The source code of GUIzero is included, so you don't have to worry about installing it yourself. GUIzero depends on Tkinter however, so you will need to install tkinter using:
+
+`sudo apt-get python3-tk`
