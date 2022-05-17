@@ -16,9 +16,9 @@ def gameLoop() :
 	pygame.init()
 	destGui()
 	
-	screen = pygame.display.set_mode((800, 508))
+	screen = pygame.display.set_mode((800, 450))
 	pygame.display.set_caption("Punch Game!")
-	background = pygame.image.load("resource/mortalKombat.webp")
+	background = pygame.image.load("resource/mortal.png")
 	
 	running = True
 
