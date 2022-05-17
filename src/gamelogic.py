@@ -8,7 +8,9 @@ print("Game logic works")
 # Array to store io events
 ioevents = []
 trackEvents = True
-	
+
+from handleio import checkInputs
+
 def gameLoop() :
 	""" The main game loop! """
 	pygame.init()
@@ -22,6 +24,7 @@ def gameLoop() :
 
 	# Main game loop
 	while running :
+		checkInputs()
 		screen.fill("white")
 		screen.blit(background, (0, 0))
 		

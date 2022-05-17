@@ -1,6 +1,8 @@
-import explorerhat
-
 # Handle input and output
+
+# |  Comment this out when working on Replit
+# V
+#import explorerhat
 
 import gamelogic
 
@@ -13,6 +15,8 @@ def sendsignal(sig) :
 # Write handlers here
 #
 
+def checkInputs() :
+	""" Check joystick and buttons for input """
 
 
 # 
