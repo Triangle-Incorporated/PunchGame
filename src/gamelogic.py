@@ -27,8 +27,9 @@ def gameLoop() :
 		checkInputs()
 		screen.fill("white")
 		screen.blit(background, (0, 0))
-		
 
+		for event in pygame.event.get() :
+			print("hi")
 
 		pygame.display.update()
 
