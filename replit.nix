@@ -2,6 +2,6 @@
     deps = [
       pkgs.python
       pkgs.python3
-	  pkgs.python3.9-tkinter
+	  pkgs.python39Packages.tkinter
     ];
 }
