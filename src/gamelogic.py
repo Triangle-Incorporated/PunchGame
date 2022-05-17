@@ -21,3 +21,4 @@ def gameLoop() :
 
 	# Close game loop
 	initGui()
+	trackEvents = False
