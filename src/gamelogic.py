@@ -14,6 +14,7 @@ width = 800
 height = 450
 
 pygame.init()
+clock = pygame.time.Clock()
 
 from handleio import checkInputs, ledOutput
 
@@ -31,6 +32,7 @@ def gameLoop() :
 		checkInputs()
 		screen.fill("white")
 		screen.blit(background, (0, 0))
+		clock.tick(24)
 
 		for event in pygame.event.get() :
 			
