@@ -1,7 +1,6 @@
 { pkgs }: {
     deps = [
-		pkgs.pygame
-		pkgs.explorerhat
-		pkgs.pip
+      pkgs.python
+      pkgs.python3
     ];
 }
