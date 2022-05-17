@@ -2,10 +2,18 @@ import explorerhat
 
 # Handle input and output
 
-def initListers() :
-	""" Start event listeners for the game """
+import gamelogic
+
+def sendsignal(sig) :
+	""" Send input signal to game loop to handle """
+	if gamelogic.trackEvents :
+		gamelogic.iovents.append(sig)
+
+#
+# Write handlers here
+#
 
 
-def destListeners() :
-	""" Stop listening for user input """
-
+# 
+# End handler code here
+#

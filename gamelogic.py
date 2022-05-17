@@ -2,15 +2,17 @@
 
 import pygame
 from display import initGui, destGui
-from handleio import initListeners, destListeners
 
 print("Game logic works")
+
+# Array to store io events
+ioevents = []
+trackEvents = True
 
 	
 def gameLoop() :
 	""" The main game loop! """
 	destGui()
-	initListeners()
 
 	# Main game loop
 
@@ -18,5 +20,4 @@ def gameLoop() :
 
 
 	# Close game loop
-	destListeners()
 	initGui()
