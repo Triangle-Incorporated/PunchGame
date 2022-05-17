@@ -11,6 +11,10 @@ def sendsignal(sig) :
 	if gamelogic.trackEvents :
 		gamelogic.iovents.append(sig)
 
+def ledOutput(alertType) :
+	""" Turn on different leds depending on alert type """
+
+	
 #
 # Write handlers here
 #

@@ -9,7 +9,7 @@ print("Game logic works")
 ioevents = []
 trackEvents = True
 
-from handleio import checkInputs
+from handleio import checkInputs, ledOutput
 
 def gameLoop() :
 	""" The main game loop! """
