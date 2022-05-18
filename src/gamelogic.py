@@ -30,6 +30,7 @@ def gameLoop() :
 	# Main game loop
 	while running :
 		checkInputs()
+		
 		screen.fill((255, 255, 255))
 		screen.blit(background, (0, 0))
 		clock.tick(24)
