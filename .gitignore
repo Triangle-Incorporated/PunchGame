@@ -11,3 +11,5 @@ __pychache__
 
 src/guizero/__pycache__/*
 src/guizero/__pycache__
+
+.config

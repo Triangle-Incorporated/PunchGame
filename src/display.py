@@ -20,7 +20,7 @@ import gamelogic
 
 b_title = gui.Box(app, layout = "grid")
 t_title = gui.Text(b_title, text = "Welcome to Punch Game!", grid = [0, 0])
-button_title = gui.PushButton(b_title, text = "Quit", command = app.destroy, grid = [1, 0])
+btn_title = gui.PushButton(b_title, text = "Quit", command = app.destroy, grid = [1, 0])
 
 playButton = gui.PushButton(app, text = "Play", command = gamelogic.gameLoop)
 
