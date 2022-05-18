@@ -2,7 +2,7 @@
 
 # |  Comment this out when working on Replit
 # V
-#import explorerhat
+import explorerhat
 
 import gamelogic
 
@@ -39,16 +39,18 @@ def checkInputs() :
 			sendsignal("lright")
 
 	# Actions
-	if btn == 1 and j_y > 3.5:
+	if btn == 1 and j_y > 3.5 :
 		sendsignal("downb")
-	if btn == 1 and j_y < 3.5 and j_y > 1.5 and j_x < 3.5 and j_x > 1.5:
-		sendsignal("ntrlb"')
-	if btn == 1 and j_y < 1.5:
+	elif btn == 1 and j_y <= 3.5 and j_y >= 1.5 :
+		sendsignal("ntrlb")
+	elif btn == 1 and j_y < 1.5 :
 		sendsignal("upb")
-#	if btn == 1 and j_x > 3.5:
-#		sendsignal("leftb")
-#	if btn == 1 and j_x < 1.5:
-#		sendsignal("rightb")
+"""
+	if btn == 1 and j_x > 3.5:
+		sendsignal("leftb")
+	if btn == 1 and j_x < 1.5:
+		sendsignal("rightb")
+"""
 
 # 
 # End handler code here
