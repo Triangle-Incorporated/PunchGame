@@ -2,7 +2,7 @@
 
 # |  Comment this out when working on Replit
 # V
-import explorerhat
+dimport explorerhat
 
 import gamelogic
 
@@ -32,11 +32,13 @@ def checkInputs() :
 			sendsignal("sleft")
 		else :
 			sendsignal("lleft")
-	if j_x > 2.6 :
+	elif j_x > 2.6 :
 		if j_x < 3.3 :
 			sendsignal("sright")
 		else :
 			sendsignal("lright")
+	else :
+		sendsignal("nop")
 
 	# Actions
 	if btn == 1 and j_y > 3.5 :
