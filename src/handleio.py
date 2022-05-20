@@ -11,10 +11,16 @@ def sendsignal(sig) :
 	if gamelogic.trackEvents :
 		gamelogic.iovents.append(sig)
 
-def ledOutput(alertType) :
+def ledOutput(health) :
 	""" Turn on different leds depending on alert type """
-
-	
+	if health <= 50 and health > 20:
+		explorerhat.output.one.blink(1, 1)
+	elif heatlh <= 20 and health > 10:
+		explorerhat.output.one.blink(0.5, 0.5)
+	elif health <= 10:
+		explorerhat.output.one.blink(0.25, 0.25)
+	else:
+		explorerhat.output.one.on()
 #
 # Write handlers here
 #

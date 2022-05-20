@@ -22,7 +22,8 @@ def gameLoop() :
 	""" The main game loop! """
 	destGui()
 	running = True
-
+	p1Health = 100
+	
 	screen = pygame.display.set_mode((width, height))
 	pygame.display.set_caption("Punch Game!")
 	background = pygame.image.load("resource/mortal.png")
@@ -30,7 +31,7 @@ def gameLoop() :
 	# Main game loop
 	while running :
 		checkInputs()
-		
+		ledOutput(p1Health)
 		screen.fill((255, 255, 255))
 		screen.blit(background, (0, 0))
 		clock.tick(24)
