@@ -35,14 +35,14 @@ def checkInputs() :
 	# Walking
 	if j_x < 2.4 :
 		if j_x > 1.7 :
-			sendsignal("sleft")
-		else :
-			sendsignal("lleft")
-	elif j_x > 2.6 :
-		if j_x < 3.3 :
 			sendsignal("sright")
 		else :
 			sendsignal("lright")
+	elif j_x > 2.6 :
+		if j_x < 3.3 :
+			sendsignal("sleft")
+		else :
+			sendsignal("lleft")
 	else :
 		sendsignal("nop")
 
