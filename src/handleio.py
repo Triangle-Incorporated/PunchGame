@@ -9,7 +9,7 @@ import gamelogic
 def sendsignal(sig) :
 	""" Send input signal to game loop to handle """
 	if gamelogic.trackEvents :
-		gamelogic.iovents.append(sig)
+		gamelogic.ioevents.append(sig)
 
 def ledOutput(health) :
 	""" Turn on different leds depending on alert type """
