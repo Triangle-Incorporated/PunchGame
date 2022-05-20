@@ -20,6 +20,7 @@ from handleio import checkInputs, ledOutput
 
 def gameLoop() :
 	""" The main game loop! """
+	global ioevents
 	destGui()
 	running = True
 	p1Health = 100
@@ -31,6 +32,8 @@ def gameLoop() :
 	# Main game loop
 	while running :
 		checkInputs()
+		print(ioevents)
+		ioevents = []
 		ledOutput(p1Health)
 		screen.fill((255, 255, 255))
 		screen.blit(background, (0, 0))
