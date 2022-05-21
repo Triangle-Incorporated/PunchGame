@@ -2,7 +2,7 @@
 
 # |  Comment this out when working on Replit
 # V
-import explorerhat
+# import explorerhat
 
 import gamelogic
 
@@ -12,7 +12,7 @@ def sendsignal(sig) :
 		gamelogic.ioevents.append(sig)
 
 def ledOutput(health) :
-	""" Turn on different leds depending on alert type """
+	""" Turn on different leds depending on alert type
 	if health <= 50 and health > 20:
 		explorerhat.output.one.blink(1, 1)
 	elif health <= 20 and health > 10:
@@ -23,12 +23,14 @@ def ledOutput(health) :
 		explorerhat.output.one.off()
 	else:
 		explorerhat.output.one.on()
+	"""
 #
 # Write handlers here
 #
 
+
 def checkInputs() :
-	""" Check joystick and buttons for input """
+	""" Check joystick and buttons for input 
 	j_x = explorerhat.analog.two.read()
 	j_y = explorerhat.analog.one.read()
 
@@ -55,12 +57,9 @@ def checkInputs() :
 		sendsignal("ntrlb")
 	elif btn == 1 and j_y < 1.5 :
 		sendsignal("upb")
-"""
-	if btn == 1 and j_x > 3.5:
-		sendsignal("leftb")
-	if btn == 1 and j_x < 1.5:
-		sendsignal("rightb")
-"""
+	"""
+
+
 
 # 
 # End handler code here
