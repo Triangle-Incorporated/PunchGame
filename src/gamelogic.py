@@ -39,6 +39,8 @@ def gameLoop() :
 		screen.blit(background, (0, 0))
 		clock.tick(24)
 
+		# replit only:
+		is_action = False
 		for event in pygame.event.get() :
 			
 			if event.type == pygame.QUIT :
