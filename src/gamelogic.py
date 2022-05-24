@@ -30,7 +30,7 @@ class Player(pygame.sprite.Sprite) :
         super().__init__()
         self.image = pygame.image.load(img_path) # turn into a list of textures for animations
         self.rect = self.image.get_rect()
-        self.rect = self.rect.move(700 if is_player else 100, 240) # Set y to 250 to put character on the bottom of the screen
+        self.rect = self.rect.move(600 if is_player else 100, 240) # Set y to 250 to put character on the bottom of the screen
         
         self.health = health
         self.vel_x = 0
@@ -48,9 +48,13 @@ class Player(pygame.sprite.Sprite) :
         """ THERE'S A REASON IT'S CALLED PUNCHGAME """
         direction = 1 if self.vel_x > 0 else -1
 
+        xpos = self.rect.x if direction == -1 else self.rect.x + self.rect.width
+
         # Easy collision detection
         if self.rect.colliderect(other.rect) :
             other.health -= 10
+
+
 
 
         if self.rect.x >= other.rect.x and self.rect.x <= other.rect.x + 30:
@@ -111,13 +115,13 @@ def gameLoop() :
         # Handle events
         for event in ioevents :
             if event == "sright" :
-                player.vel_x = 5
+                player.vel_x = 10
             elif event == "lright" :
-                player.vel_x = 10 
+                player.vel_x = 15
             elif event == "sleft" :
-                player.vel_x = -5
-            elif event == "lleft" :
                 player.vel_x = -10
+            elif event == "lleft" :
+                player.vel_x = -15
             else :
                 player.vel_x = 0
 
@@ -133,5 +137,6 @@ def gameLoop() :
     # Close game loop
     trackEvents = False
     pygame.display.set_mode((1,1))
+    print("Closing game loop")
     initGui()
 
