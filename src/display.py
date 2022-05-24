@@ -4,13 +4,13 @@ import guizero as gui
 app = gui.App("this is an app")
 
 def initGui() :
-	""" Start displaying the gui """
-	app.show()
-	app.display()
+    """ Start displaying the gui """
+    app.show()
+    app.display()
 
 def destGui() :
-	"""Stop showing gui """
-	app.hide()
+    """Stop showing gui """
+    app.hide()
 
 import gamelogic
 
