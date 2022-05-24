@@ -31,9 +31,19 @@ class Player(pygame.sprite.Sprite) :
         self.image = pygame.image.load(img_path) # turn into a list of textures for animations
         self.rect = self.image.get_rect()
         self.rect = self.rect.move(600 if is_player else 100, 240) # Set y to 250 to put character on the bottom of the screen
+        self.direction = -1
         
         self.health = health
         self.vel_x = 0
+
+    def set_vel(self, new) :
+        """ Update velocity and direction """
+        self.vel_x = new
+        if self.vel_x > 0 :
+            self.direction = 1
+        elif self.vel_x < 0 :
+            self.direction = -1
+        # Do nothing to direction if velocity is zero
 
     def update(self) :
         """ Change sprite's position """
@@ -46,23 +56,14 @@ class Player(pygame.sprite.Sprite) :
     
     def punch(self, other, type):
         """ THERE'S A REASON IT'S CALLED PUNCHGAME """
-        
-        # Easy collision detection
-        if self.rect.colliderect(other.rect) :
-            other.health -= 10
-            return
 
         # Hard collision detection
-        direction = 1 if self.vel_x > 0 else -1
-        xpos = self.rect.x if direction == -1 else self.rect.x + self.rect.width
+        xpos = self.rect.x if self.direction == -1 else self.rect.x + self.rect.width
 
-
-
-
-
-        if self.rect.x >= other.rect.x and self.rect.x <= other.rect.x + 30:
-            other.health -= 10
-        
+        if other.rect.collidepoint((Player.range_table[type] * self.direction) + xpos, self.rect.y) :
+            print("HIT!!")
+            other.health -= Player.damage_table[type]
+            return
 
 
 def gameLoop() :
@@ -118,15 +119,21 @@ def gameLoop() :
         # Handle events
         for event in ioevents :
             if event == "sright" :
-                player.vel_x = 10
+                player.set_vel(10)
             elif event == "lright" :
-                player.vel_x = 15
+                player.set_vel(15)
             elif event == "sleft" :
-                player.vel_x = -10
+                player.set_vel(-10)
             elif event == "lleft" :
-                player.vel_x = -15
+                player.set_vel(-15)
+            elif event == "upb" :
+                player.punch(enemy, event)
+            elif event == "downb" :
+                player.punch(enemy, event)
+            elif event == "ntrlb" :
+                player.punch(enemy, event)
             else :
-                player.vel_x = 0
+                player.set_vel(0)
 
 
     
