@@ -92,7 +92,6 @@ def gameLoop() :
             if event.type == pygame.QUIT :
                 running = False
 #/////// THIS CODE IS FOR USING PYGAME WITHOUT A CONTROLLER /////////
-#////////////// TEMPORARY FOR USE ON REPLIT /////////////////////////
             is_action = False
             button_buff = []
             if event.type == pygame.KEYDOWN :
@@ -114,7 +113,7 @@ def gameLoop() :
                 ioevents.append("downb")
             else :
                 ioevents.append("ntrlb")
-#////////////// TEMPORARY FOR USE ON REPLIT /////////////////////////
+#/////// END OF CODE FOR USING PYGAME WITHOUT A CONTROLLER /////////
 
         # Handle events
         for event in ioevents :
