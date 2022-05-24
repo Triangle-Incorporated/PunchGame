@@ -13,10 +13,6 @@ trackEvents = True
 width = 800
 height = 450
 
-# Convert attacks to damage and ranges
-damage_table = { "upb" : 12, "downb" : 8, "ntrlb" : 10 }
-range_table = { "upb" : 40, "downb" : 80, "ntrlb" : 60 }
-
 pygame.init()
 clock = pygame.time.Clock()
 
@@ -25,6 +21,10 @@ from handleio import checkInputs, ledOutput
 class Player(pygame.sprite.Sprite) :
     """ Player class """
     
+    # Convert attacks to damage and ranges
+    damage_table = { "upb" : 12, "downb" : 8, "ntrlb" : 10 }
+    range_table = { "upb" : 40, "downb" : 80, "ntrlb" : 60 }
+
     def __init__(self, health, img_path, is_player) :
         print("New player")
         super().__init__()
@@ -46,13 +46,16 @@ class Player(pygame.sprite.Sprite) :
     
     def punch(self, other, type):
         """ THERE'S A REASON IT'S CALLED PUNCHGAME """
-        direction = 1 if self.vel_x > 0 else -1
-
-        xpos = self.rect.x if direction == -1 else self.rect.x + self.rect.width
-
+        
         # Easy collision detection
         if self.rect.colliderect(other.rect) :
             other.health -= 10
+            return
+
+        # Hard collision detection
+        direction = 1 if self.vel_x > 0 else -1
+        xpos = self.rect.x if direction == -1 else self.rect.x + self.rect.width
+
 
 
 
