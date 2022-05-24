@@ -136,7 +136,8 @@ def gameLoop() :
                 player.set_vel(0)
 
 
-    
+        
+        # Redraw sprites
         player.update()
         enemy.update()
         player.draw(screen)
