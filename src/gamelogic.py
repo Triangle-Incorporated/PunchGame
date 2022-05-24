@@ -13,6 +13,10 @@ trackEvents = True
 width = 800
 height = 450
 
+# Convert attacks to damage and ranges
+damage_table = { "upb" : 12, "downb" : 8, "ntrlb" : 10 }
+range_table = { "upb" : 40, "downb" : 80, "ntrlb" : 60 }
+
 pygame.init()
 clock = pygame.time.Clock()
 
@@ -21,11 +25,12 @@ from handleio import checkInputs, ledOutput
 class Player(pygame.sprite.Sprite) :
     """ Player class """
     
-    def __init__(self, health, file_path) :
+    def __init__(self, health, img_path, is_player) :
         print("New player")
         super().__init__()
-        self.image = pygame.image.load(file_path)
+        self.image = pygame.image.load(img_path) # turn into a list of textures for animations
         self.rect = self.image.get_rect()
+        self.rect = self.rect.move(700 if is_player else 100, 240) # Set y to 250 to put character on the bottom of the screen
         
         self.health = health
         self.vel_x = 0
@@ -39,11 +44,20 @@ class Player(pygame.sprite.Sprite) :
         """ Draw the sprite """
         screen.blit(self.image, self.rect)        
     
-    def punch(self, other):
+    def punch(self, other, type):
         """ THERE'S A REASON IT'S CALLED PUNCHGAME """
+        direction = 1 if self.vel_x > 0 else -1
+
+        # Easy collision detection
+        if self.rect.colliderect(other.rect) :
+            other.health -= 10
+
+
         if self.rect.x >= other.rect.x and self.rect.x <= other.rect.x + 30:
             other.health -= 10
-            
+        
+
+
 def gameLoop() :
     """ The main game loop! """
     global ioevents
@@ -52,8 +66,8 @@ def gameLoop() :
     screen = pygame.display.set_mode((width, height))
     pygame.display.set_caption("Punch Game!")
     background = pygame.image.load("resource/mortal.png")
-    player = Player(100, "resource/whiterectangle.png")
-    #enemy = Player(90, "resource/whiterectangle.png")
+    player = Player(100, "resource/whiterectangle.png", True)
+    enemy = Player(90, "resource/whiterectangle.png", False)
 
     # Main game loop
     while running :
@@ -64,8 +78,7 @@ def gameLoop() :
         screen.blit(background, (0, 0))
         clock.tick(24)
 
-        # replit only:
-        is_action = False
+        is_action = False # replit only
         for event in pygame.event.get() :
             
             if event.type == pygame.QUIT :
@@ -87,36 +100,33 @@ def gameLoop() :
 
         if is_action :
             keys = pygame.key.get_pressed()
-            print(keys)
             if keys[pygame.K_UP] :
                 ioevents.append("upb")
-                print("up")
             elif keys[pygame.K_DOWN] :
                 ioevents.append("downb")
-                print("down")
             else :
                 ioevents.append("ntrlb")
 #////////////// TEMPORARY FOR USE ON REPLIT /////////////////////////
 
         # Handle events
         for event in ioevents :
-            print(event)
             if event == "sright" :
                 player.vel_x = 5
             elif event == "lright" :
-                print("right")
                 player.vel_x = 10 
             elif event == "sleft" :
                 player.vel_x = -5
             elif event == "lleft" :
                 player.vel_x = -10
             else :
-                continue
-                
+                player.vel_x = 0
+
+
+    
         player.update()
-        #enemy.update()
+        enemy.update()
         player.draw(screen)
-        #enemy.draw(screen)
+        enemy.draw(screen)
         
         pygame.display.update()
 
