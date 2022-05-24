@@ -33,7 +33,7 @@ class Player(pygame.sprite.Sprite) :
     def update(self) :
         """ Change sprite's position """
         pygame.sprite.Sprite.update(self)
-        self.rect.move(self.vel_x, 0)
+        self.rect = self.rect.move(self.vel_x, 0)
 
     def draw(self, screen) :
         """ Draw the sprite """
@@ -53,8 +53,7 @@ def gameLoop() :
     pygame.display.set_caption("Punch Game!")
     background = pygame.image.load("resource/mortal.png")
     player = Player(100, "resource/whiterectangle.png")
-    enemy = Player(90, "resource/whiterectangle.png")
-    enemy.punch(    player)
+    #enemy = Player(90, "resource/whiterectangle.png")
 
     # Main game loop
     while running :
@@ -102,22 +101,22 @@ def gameLoop() :
         # Handle events
         for event in ioevents :
             print(event)
-            if event == "lleft" :
-                player.vel_x = -5
+            if event == "sright" :
+                player.vel_x = 5
             elif event == "lright" :
                 print("right")
-                player.vel_x = -10 
+                player.vel_x = 10 
             elif event == "sleft" :
-                player.vel_x = 5
+                player.vel_x = -5
             elif event == "lleft" :
-                player.vel_x = 10
+                player.vel_x = -10
             else :
                 continue
                 
         player.update()
-        enemy.update()
+        #enemy.update()
         player.draw(screen)
-        enemy.draw(screen)
+        #enemy.draw(screen)
         
         pygame.display.update()
 
