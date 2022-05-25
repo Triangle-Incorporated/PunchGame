@@ -18,12 +18,33 @@ clock = pygame.time.Clock()
 
 from handleio import checkInputs, ledOutput
 
+class HealthBar() :
+    """ Health bars """
+
+    def __init__(self, health, is_right) :
+        # Health bar rectangles display
+        left_coord = 450 if is_right else 30
+        self.outer = pygame.Rect(left_coord, 10, (3.10 * health), 25)
+        self.inner = pygame.Rect(left_coord + 2, 12, (3.06 * health), 21)
+        self.health = health
+
+    def update(self, health) :
+        """ Update health """
+        self.health = health
+        self.inner.width = 3.06 * self.health
+    
+    def draw(self, screen) :
+        """ Draw health bar """
+        pygame.draw.rect(screen, (0, 0, 0), self.outer)
+        pygame.draw.rect(screen, (255, 0, 0), self.inner)
+
+
 class Player(pygame.sprite.Sprite) :
     """ Player class """
     
     # Convert attacks to damage and ranges
     damage_table = { "upb" : 12, "downb" : 8, "ntrlb" : 10 }
-    range_table = { "upb" : 40, "downb" : 80, "ntrlb" : 60 }
+    range_table = { "upb" : 60, "downb" : 120, "ntrlb" : 90 }
 
     def __init__(self, health, img_path, is_player) :
         print("New player")
@@ -34,6 +55,7 @@ class Player(pygame.sprite.Sprite) :
         self.direction = -1
         
         self.health = health
+        self.health_bar = HealthBar(health, is_player)
         self.vel_x = 0
 
     def set_vel(self, new) :
@@ -49,10 +71,12 @@ class Player(pygame.sprite.Sprite) :
         """ Change sprite's position """
         pygame.sprite.Sprite.update(self)
         self.rect = self.rect.move(self.vel_x, 0)
+        self.health_bar.update(self.health)
 
     def draw(self, screen) :
         """ Draw the sprite """
-        screen.blit(self.image, self.rect)        
+        screen.blit(self.image, self.rect)
+        self.health_bar.draw(screen)
     
     def punch(self, other, type):
         """ THERE'S A REASON IT'S CALLED PUNCHGAME """
