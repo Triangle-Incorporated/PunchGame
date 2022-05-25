@@ -79,8 +79,8 @@ def gameLoop() :
 
     # Main game loop
     while running :
-        checkInputs()
         ioevents = []
+        checkInputs()
         ledOutput(player.health)
         screen.fill((255, 255, 255))
         screen.blit(background, (0, 0))
