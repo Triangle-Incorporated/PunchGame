@@ -1,4 +1,4 @@
-    # Handle Game
+# Handle Game
 
 import pygame
 from display import initGui, destGui
@@ -65,6 +65,8 @@ class Player(pygame.sprite.Sprite) :
             other.health -= Player.damage_table[type]
             return
 
+        print("MISS!")
+
 
 def gameLoop() :
     """ The main game loop! """
@@ -92,7 +94,6 @@ def gameLoop() :
             if event.type == pygame.QUIT :
                 running = False
 #/////// THIS CODE IS FOR USING PYGAME WITHOUT A CONTROLLER /////////
-            is_action = False
             button_buff = []
             if event.type == pygame.KEYDOWN :
                 if event.key == pygame.K_LEFT :
