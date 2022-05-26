@@ -46,11 +46,21 @@ class Player(pygame.sprite.Sprite) :
     damage_table = { "upb" : 12, "downb" : 8, "ntrlb" : 10 }
     range_table = { "upb" : 60, "downb" : 120, "ntrlb" : 90 }
     cooldown_table = { "upb" : 10, "downb" : 6, "ntrlb" : 8 }
+    texture_table = { "nml" : 0, "hurt" : 1, "upb" : 2, "downb" : 3, "ntrlb" : 4 }
 
-    def __init__(self, health, img_path, is_player) :
+    image_list = [
+                           pygame.image.load("resource/whiterectangle.png"), 
+                           pygame.image.load("resource/redrectangle.png"), 
+                           pygame.image.load("resource/bluerectangle.png"),
+                           pygame.image.load("resource/greenrectangle.png"),
+                           pygame.image.load("resource/purplerectangle.png")
+                      ]
+
+    def __init__(self, health, is_player) :
         print("New player")
         super().__init__()
-        self.image = pygame.image.load(img_path) # turn into a list of textures for animations
+        
+        self.image = Player.image_list[0]
         self.rect = self.image.get_rect()
         self.rect = self.rect.move(600 if is_player else 100, 240) # Set y to 250 to put character on the bottom of the screen
         self.direction = -1
@@ -73,7 +83,11 @@ class Player(pygame.sprite.Sprite) :
         pygame.sprite.Sprite.update(self)
         self.rect = self.rect.move(self.vel_x, 0)
         self.health_bar.update(self.health)
-        self.cooldown -= 1
+        if self.cooldown > 0 :
+            self.cooldown -= 1
+        else :
+            self.image = Player.image_list[0]
+
 
     def draw(self, screen) :
         """ Draw the sprite """
@@ -92,6 +106,8 @@ class Player(pygame.sprite.Sprite) :
         # Hard collision detection
         xpos = self.rect.x if self.direction == -1 else self.rect.x + self.rect.width
 
+        self.image = Player.image_list[Player.texture_table[type]]
+        
         hurt_box = pygame.Rect(xpos, self.rect.y, Player.range_table[type] * self.direction, 1)
         if other.rect.colliderect(hurt_box) :
             print("HIT!!")
@@ -108,8 +124,8 @@ def gameLoop() :
     screen = pygame.display.set_mode((width, height))
     pygame.display.set_caption("Punch Game!")
     background = pygame.image.load("resource/mortal.png")
-    player = Player(100, "resource/whiterectangle.png", True)
-    enemy = Player(90, "resource/whiterectangle.png", False)
+    player = Player(100, True)
+    enemy = Player(90, False)
 
     # Main game loop
     while running :
