@@ -75,6 +75,12 @@ class Player(pygame.sprite.Sprite) :
         self.direction = 1 if self.vel_x > 0 else (-1 if self.vel_x < 0 else self.direction)
         # Do nothing to direction if velocity is zero
 
+    def set_health(self, dmg) :
+        """ Update health """
+        self.cooldown = 6
+        self.image = Player.image_list[Player.texture_table["hurt"]]
+        self.health -= dmg
+    
     def update(self) :
         """ Change sprite's position """
         pygame.sprite.Sprite.update(self)
@@ -98,7 +104,6 @@ class Player(pygame.sprite.Sprite) :
             self.cooldown = Player.cooldown_table[type]
         else :
             return
-
         
         # Hard collision detection
         xpos = self.rect.x if self.direction == -1 else self.rect.x + self.rect.width
@@ -108,7 +113,7 @@ class Player(pygame.sprite.Sprite) :
         hurt_box = pygame.Rect(xpos, self.rect.y, Player.range_table[type] * self.direction, 1)
         if other.rect.colliderect(hurt_box) :
             print("HIT!!")
-            other.health -= Player.damage_table[type]
+            other.set_health(Player.damage_table[type])
             return
         print("MISS!")
 
