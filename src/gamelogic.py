@@ -54,16 +54,16 @@ class Player(pygame.sprite.Sprite) :
                      "ntrlb" : pygame.image.load("resource/purplerectangle.png") 
                     }
 
-    def __init__(self, health, is_player) :
+    def __init__(self, health, is_right) :
         print("New player")
         super().__init__()
         
         self.image = Player.texture_table["nml"]
         self.rect = self.image.get_rect()
-        self.rect = self.rect.move(600 if is_player else 100, 240) # Set y to 250 to put character on the bottom of the screen
+        self.rect = self.rect.move(600 if is_right else 100, 240) # Set y to 250 to put character on the bottom of the screen
         self.direction = -1
         self.health = health
-        self.health_bar = HealthBar(health, is_player)
+        self.health_bar = HealthBar(health, is_right)
         self.vel_x = 0
         self.cooldown = 0
 
