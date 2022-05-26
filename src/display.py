@@ -2,7 +2,7 @@
 
 import guizero as gui
 import csv
-app = gui.App("this is an app", bg = "blue")
+app = gui.App("Punch Game!", bg = "blue")
 
 def initGui() :
     """ Start displaying the gui """
@@ -80,7 +80,7 @@ def signup() :
         db.writerow([name, passw])
 
     # Start game
-    app.info("Account Creation Successful", "Your account was created succesfully! Enjoy playing PunchGame!")
+    app.info("Account Creation Successful", "Your account was created succesfully! Enjoy playing Punch Game!")
     destGui()
     gamelogic.gameLoop()
 
