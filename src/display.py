@@ -41,6 +41,7 @@ def login() :
             if [name, passw] == row :
                 destGui()
                 gamelogic.gameLoop()
+                return
 
     app.warn("Incorrect Username or Password", "Your username or password was incorrect.")
 

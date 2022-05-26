@@ -46,21 +46,19 @@ class Player(pygame.sprite.Sprite) :
     damage_table = { "upb" : 12, "downb" : 8, "ntrlb" : 10 }
     range_table = { "upb" : 60, "downb" : 120, "ntrlb" : 90 }
     cooldown_table = { "upb" : 10, "downb" : 6, "ntrlb" : 8 }
-    texture_table = { "nml" : 0, "hurt" : 1, "upb" : 2, "downb" : 3, "ntrlb" : 4 }
-
-    image_list = [
-                  pygame.image.load("resource/whiterectangle.png"), 
-                  pygame.image.load("resource/redrectangle.png"), 
-                  pygame.image.load("resource/bluerectangle.png"),
-                  pygame.image.load("resource/greenrectangle.png"),
-                  pygame.image.load("resource/purplerectangle.png")
-                 ]
+    texture_table = { 
+                     "nml" : pygame.image.load("resource/whiterectangle.png"), 
+                     "hurt" : pygame.image.load("resource/redrectangle.png"), 
+                     "upb" : pygame.image.load("resource/bluerectangle.png"), 
+                     "downb" : pygame.image.load("resource/greenrectangle.png"), 
+                     "ntrlb" : pygame.image.load("resource/purplerectangle.png") 
+                    }
 
     def __init__(self, health, is_player) :
         print("New player")
         super().__init__()
         
-        self.image = Player.image_list[0]
+        self.image = Player.texture_table["nml"]
         self.rect = self.image.get_rect()
         self.rect = self.rect.move(600 if is_player else 100, 240) # Set y to 250 to put character on the bottom of the screen
         self.direction = -1
@@ -78,7 +76,7 @@ class Player(pygame.sprite.Sprite) :
     def set_health(self, dmg) :
         """ Update health """
         self.cooldown = 6
-        self.image = Player.image_list[Player.texture_table["hurt"]]
+        self.image = Player.texture_table["hurt"]
         self.health -= dmg
     
     def update(self) :
@@ -89,7 +87,7 @@ class Player(pygame.sprite.Sprite) :
         if self.cooldown > 0 :
             self.cooldown -= 1
         else :
-            self.image = Player.image_list[0]
+            self.image = Player.texture_table["nml"]
 
 
     def draw(self, screen) :
@@ -108,7 +106,7 @@ class Player(pygame.sprite.Sprite) :
         # Hard collision detection
         xpos = self.rect.x if self.direction == -1 else self.rect.x + self.rect.width
 
-        self.image = Player.image_list[Player.texture_table[type]]
+        self.image = Player.texture_table[type]
         
         hurt_box = pygame.Rect(xpos, self.rect.y, Player.range_table[type] * self.direction, 1)
         if other.rect.colliderect(hurt_box) :
