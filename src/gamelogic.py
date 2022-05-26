@@ -72,10 +72,7 @@ class Player(pygame.sprite.Sprite) :
     def set_vel(self, new) :
         """ Update velocity and direction """
         self.vel_x = new
-        if self.vel_x > 0 :
-            self.direction = 1
-        elif self.vel_x < 0 :
-            self.direction = -1
+        self.direction = 1 if self.vel_x > 0 else (-1 if self.vel_x < 0 else self.direction)
         # Do nothing to direction if velocity is zero
 
     def update(self) :
