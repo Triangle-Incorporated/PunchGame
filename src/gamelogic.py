@@ -45,6 +45,7 @@ class Player(pygame.sprite.Sprite) :
     # Convert attacks to damage and ranges
     damage_table = { "upb" : 12, "downb" : 8, "ntrlb" : 10 }
     range_table = { "upb" : 60, "downb" : 120, "ntrlb" : 90 }
+    cooldown_table = { "upb" : 10, "downb" : 6, "ntrlb" : 8 }
 
     def __init__(self, health, img_path, is_player) :
         print("New player")
@@ -53,10 +54,10 @@ class Player(pygame.sprite.Sprite) :
         self.rect = self.image.get_rect()
         self.rect = self.rect.move(600 if is_player else 100, 240) # Set y to 250 to put character on the bottom of the screen
         self.direction = -1
-        
         self.health = health
         self.health_bar = HealthBar(health, is_player)
         self.vel_x = 0
+        self.cooldown = 0
 
     def set_vel(self, new) :
         """ Update velocity and direction """
@@ -72,6 +73,7 @@ class Player(pygame.sprite.Sprite) :
         pygame.sprite.Sprite.update(self)
         self.rect = self.rect.move(self.vel_x, 0)
         self.health_bar.update(self.health)
+        self.cooldown -= 1
 
     def draw(self, screen) :
         """ Draw the sprite """
@@ -80,15 +82,21 @@ class Player(pygame.sprite.Sprite) :
     
     def punch(self, other, type):
         """ THERE'S A REASON IT'S CALLED PUNCHGAME """
+        # Set punch cooldown
+        if self.cooldown != 0 :
+            self.cooldown = Player.cooldown_table[type]
+        else :
+            return
 
+        
         # Hard collision detection
         xpos = self.rect.x if self.direction == -1 else self.rect.x + self.rect.width
 
-        if other.rect.collidepoint((Player.range_table[type] * self.direction) + xpos, self.rect.y) :
+        hurt_box = pygame.Rect(xpos, self.rect.y, Player.range_table[type] * self.direction, 1)
+        if other.rect.colliderect(hurt_box) :
             print("HIT!!")
             other.health -= Player.damage_table[type]
             return
-
         print("MISS!")
 
 
@@ -118,7 +126,6 @@ def gameLoop() :
             if event.type == pygame.QUIT :
                 running = False
 #/////// THIS CODE IS FOR USING PYGAME WITHOUT A CONTROLLER /////////
-            button_buff = []
             if event.type == pygame.KEYDOWN :
                 if event.key == pygame.K_LEFT :
                     ioevents.append("lleft")
