@@ -30,7 +30,10 @@ playButton = gui.PushButton(app, text = "Play", command = gamelogic.gameLoop)
 playButton.bg = ("#90EE90")
 
 def login() :
-    
+    """ Check if login is valid """
+
+def signup() :
+    """ Check if signup is valid """
 
 #
 # End GUI code here #
