@@ -2,7 +2,7 @@
 
 import guizero as gui
 import csv
-app = gui.App("Punch Game!", bg = "blue")
+app = gui.App("Punch Game!", bg = "#ffffff")
 
 def initGui() :
     """ Start displaying the gui """
@@ -20,6 +20,11 @@ import gamelogic
 #
 # Put GUI code here
 #
+
+def quit_game() :
+    """ Check if user really wants to quit """
+    if app.yesno("Are you sure?", "You're about to quit the game, are you sure you want to?") :
+        app.destroy()
 
 def sign_window_init() :
     """ Open signup window """
@@ -90,7 +95,7 @@ def signup() :
 # Title
 b_title = gui.Box(app, layout = "grid")
 t_title = gui.Text(b_title, text = "Welcome to Punch Game!", grid = [0, 0])
-btn_title = gui.PushButton(b_title, text = "Quit", command = app.destroy, grid = [0, 1])
+btn_title = gui.PushButton(b_title, text = "Quit", command = quit_game, grid = [0, 1])
 btn_title.bg = ("white")
 btn_signup = gui.PushButton(b_title, text = "Sign Up", command = sign_window_init, grid = [1, 1])
 btn_signup.bg = "white"
@@ -100,7 +105,7 @@ b_login = gui.Box(app, layout = "grid")
 t_name = gui.Text(b_login, text = "Username: ", grid = [0, 0])
 i_name = gui.TextBox(b_login, grid = [1, 0])
 t_pass = gui.Text(b_login, text = "Password: ", grid = [0, 1])
-i_pass = gui.TextBox(b_login, grid = [1, 1])
+i_pass = gui.TextBox(b_login, grid = [1, 1], hide_text = True)
 
 # Play button
 play_button = gui.PushButton(app, text = "Play", command = login)
@@ -116,16 +121,16 @@ w_signup = gui.Window(app, "Signup")
 # Title
 st_box = gui.Box(w_signup, layout = "grid")
 st_title = gui.Text(st_box, text = "Signup", grid = [0, 0])
-st_quit = gui.PushButton(st_box, text = "Menu", grid = [1, 0], command = sign_window_dest)
+st_menu = gui.PushButton(st_box, text = "Menu", grid = [1, 0], command = sign_window_dest)
 
 # Signup
 sb_signup = gui.Box(w_signup, layout = "grid")
 st_name = gui.Text(sb_signup, text = "Username: ", grid = [0, 0])
 si_name = gui.TextBox(sb_signup, grid = [1, 0])
 st_pass = gui.Text(sb_signup, text = "Password: ", grid = [0, 1])
-si_pass = gui.TextBox(sb_signup, grid = [1, 1])
+si_pass = gui.TextBox(sb_signup, grid = [1, 1], hide_text = True)
 st_conf = gui.Text(sb_signup, grid = [0, 2], text = "Confirm: ")
-si_conf = gui.TextBox(sb_signup, grid = [1, 2])
+si_conf = gui.TextBox(sb_signup, grid = [1, 2], hide_text = True)
 
 sbtn_play = gui.PushButton(sb_signup, grid = [0, 3], text = "Signup", command = signup)
 
