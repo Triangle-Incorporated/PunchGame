@@ -78,6 +78,7 @@ class Player(pygame.sprite.Sprite) :
         self.cooldown = 6
         self.image = Player.texture_table["hurt"]
         self.health -= dmg
+        self.health = self.health if self.health > 0 else 0
     
     def update(self) :
         """ Change sprite's position """
