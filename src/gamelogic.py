@@ -108,8 +108,8 @@ class Player(pygame.sprite.Sprite) :
 
         self.image = Player.texture_table[type]
         
-        hurt_box = pygame.Rect(xpos, self.rect.y, Player.range_table[type] * self.direction, 1)
-        if other.rect.colliderect(hurt_box) :
+        hurt_line = (xpos, self.rect.y + 10, xpos + Player.range_table[type] * self.direction, self.rect.y)
+        if other.rect.clipline(hurt_line) :
             print("HIT!!")
             other.set_health(Player.damage_table[type])
             return
