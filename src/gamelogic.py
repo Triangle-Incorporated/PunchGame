@@ -49,12 +49,12 @@ class Player(pygame.sprite.Sprite) :
     texture_table = { "nml" : 0, "hurt" : 1, "upb" : 2, "downb" : 3, "ntrlb" : 4 }
 
     image_list = [
-                           pygame.image.load("resource/whiterectangle.png"), 
-                           pygame.image.load("resource/redrectangle.png"), 
-                           pygame.image.load("resource/bluerectangle.png"),
-                           pygame.image.load("resource/greenrectangle.png"),
-                           pygame.image.load("resource/purplerectangle.png")
-                      ]
+                  pygame.image.load("resource/whiterectangle.png"), 
+                  pygame.image.load("resource/redrectangle.png"), 
+                  pygame.image.load("resource/bluerectangle.png"),
+                  pygame.image.load("resource/greenrectangle.png"),
+                  pygame.image.load("resource/purplerectangle.png")
+                 ]
 
     def __init__(self, health, is_player) :
         print("New player")
@@ -97,7 +97,7 @@ class Player(pygame.sprite.Sprite) :
     def punch(self, other, type):
         """ THERE'S A REASON IT'S CALLED PUNCHGAME """
         # Set punch cooldown
-        if self.cooldown != 0 :
+        if self.cooldown == 0 :
             self.cooldown = Player.cooldown_table[type]
         else :
             return
