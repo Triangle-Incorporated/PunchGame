@@ -2,24 +2,24 @@
 
 import guizero as gui
 import csv
-app = gui.App("Punch Game!", bg = "#ffffff")
-
-def initGui() :
-    """ Start displaying the gui """
-    app.show()
-    w_signup.hide()
-    app.display()
-
-def destGui() :
-    """Stop showing gui """
-    app.hide()
-    w_signup.hide()
-
 import gamelogic
 
 #
 # Put GUI code here
 #
+
+app = gui.App("Punch Game!", bg = "#ffffff")
+
+def init_gui() :
+    """ Start displaying the gui """
+    app.show()
+    w_signup.hide()
+    app.display()
+
+def dest_gui() :
+    """Stop showing gui """
+    app.hide()
+    w_signup.hide()
 
 def quit_game() :
     """ Check if user really wants to quit """
@@ -44,8 +44,13 @@ def login() :
         db = csv.reader(f)
         for row in db :
             if [name, passw] == row :
-                destGui()
-                gamelogic.gameLoop()
+                dest_gui()
+                lr = gamelogic.gameLoop()
+                if lr :
+                    app.info("Left side wins!", "The left player wins the game!!")
+                else :
+                    app.info("Right side wins!", "The right player wins the game!!")
+                init_gui()
                 return
 
     app.warn("Incorrect Username or Password", "Your username or password was incorrect.")
@@ -87,8 +92,13 @@ def signup() :
 
     # Start game
     app.info("Account Creation Successful", "Your account was created succesfully! Enjoy playing Punch Game!")
-    destGui()
-    gamelogic.gameLoop()
+    dest_gui()
+    lr = gamelogic.gameLoop()
+    if lr :
+        app.info("Left side wins!", "The left player wins the game!!")
+    else :
+        app.info("Right side wins!", "The right player wins the game!!")
+    init_gui()
 
 #/////////// Main Window /////////////////////
 

@@ -1,7 +1,6 @@
 # Handle Game
 
 import pygame
-from display import initGui, destGui
 
 print("Game logic works")
 
@@ -120,7 +119,6 @@ class Player(pygame.sprite.Sprite) :
 def gameLoop() :
     """ The main game loop! """
     global ioevents
-    destGui()
     running = True
     screen = pygame.display.set_mode((width, height))
     pygame.display.set_caption("Punch Game!")
@@ -184,6 +182,10 @@ def gameLoop() :
                 player.set_vel(0)
 
 
+        # Check for end of game
+        if player.health <= 0 or enemy.health <= 0 :
+            break
+
         
         # Redraw sprites
         player.update()
@@ -197,5 +199,8 @@ def gameLoop() :
     trackEvents = False
     pygame.display.set_mode((1,1))
     print("Closing game loop")
-    initGui()
+   
+    if player.health <= 0 :
+        return 1
+    return 0
 

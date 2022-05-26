@@ -4,6 +4,6 @@ import display
 
 print("Main is running!")
 
-display.initGui()
+display.init_gui()
 
 print("Program exiting")
