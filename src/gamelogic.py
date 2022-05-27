@@ -53,7 +53,7 @@ class Player(pygame.sprite.Sprite) :
                      "ntrlb" : pygame.image.load("resource/purplerectangle.png") 
                     }
 
-    index_to_word = { 0 : "upb", 1 : "downb", 2 : "ntrlb" }
+    index_to_word = [ "upb", "downb", "ntrlb" ]
     
 
 
@@ -145,7 +145,7 @@ class Player(pygame.sprite.Sprite) :
         # Punching
         if abs(self.rect.x - other.rect.x) < 180 :
             type = randrange(0, 4)
-            if type == 3 :
+            if type == 3 : # Don't do anything 1/4 times
                 return
             else :
                 self.punch(other, Player.index_to_word[type])
