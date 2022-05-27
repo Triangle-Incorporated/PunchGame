@@ -101,6 +101,16 @@ def signup() :
     end_of_game(gamelogic.gameLoop())
     init_gui()
 
+def handle_enter_main(event_data) :
+    """ Handle enter for main window """
+    if event_data.key == '\r':
+        login()
+
+def handle_enter_signup(event_data) :
+    """ Handle enter for signup window """
+    if event_data.key == '\r':
+        signup()
+    
 #/////////// Main Window /////////////////////
 
 # Title
@@ -146,6 +156,9 @@ si_conf = gui.TextBox(sb_signup, grid = [1, 2], hide_text = True)
 
 sbtn_play = gui.PushButton(sb_signup, grid = [0, 3], text = "Signup", command = signup)
 sbtn_play.bg = "#ffffff"
+
+app.when_key_pressed = handle_enter_main
+w_signup.when_key_pressed = handle_enter_signup
 
 #/////////// Signup Window /////////////////////
     
