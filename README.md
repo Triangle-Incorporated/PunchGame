@@ -3,7 +3,11 @@ PunchGame is a 2d fighting game made in Python. It's controlled with a joystick 
 
 **Installation**
 
-This game depends on Explorerhat for the Raspberry Pi. It also depends on the Pygame. You can get Pygame using:
+This game depends on Explorerhat for the Raspberry Pi. You can get explorerhat using this command and following the on screen instructions: 
+
+`curl https://get.pimoroni.com/explorerhat | bash`
+
+It also depends on a newer version of Pygame. You can get Pygame using:
 
 `pip3 install pygame==2.0.2.dev4`
 
