@@ -65,12 +65,13 @@ def signup() :
     print(name, passw, cn_passw)
     
     # Check for issues with submission
-    if passw != cn_passw :
-        app.warn("Your passwords don't match.", "Your password and confirmation don't match")
-        return
 
     if name == "" or passw == "" or cn_passw == "" :
         app.warn("Blank username or password", "Your username or password was blank, fill in all fields.")
+        return
+    
+    if passw != cn_passw :
+        app.warn("Your passwords don't match.", "Your password and confirmation don't match")
         return
 
     if len(passw) < 6 :
