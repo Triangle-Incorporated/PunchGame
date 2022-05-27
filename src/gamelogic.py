@@ -133,14 +133,16 @@ class Player(pygame.sprite.Sprite) :
         if self.ai_reaction > 0 :
             return
         
+        self.ai_reaction = 12
         # Walking
         if self.rect.x + self.rect.width < other.rect.x :
             self.set_vel(10)
         elif self.rect.x > other.rect.x + other.rect.width :
             self.set_vel(-10)
         else :
-            self.set_vel(0)
-        self.ai_reaction = 12
+            is_neg = randrange(0,2)
+            self.set_vel(-7 if is_neg else 7)
+            self.ai_reaction = 6
 
         # Punching
         if abs(self.rect.x - other.rect.x) < 180 :
