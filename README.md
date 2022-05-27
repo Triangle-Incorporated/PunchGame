@@ -1,5 +1,8 @@
 # PunchGame
-PunchGame is a 2d fighting game made in Python. It's controlled with a joystick and a couple buttons.
+PunchGame is a 2d fighting game made in Python. There's two version for different input types:
+
+1. Keyboard and mouse
+2. Our custom made controller
 
 **Installation**
 
