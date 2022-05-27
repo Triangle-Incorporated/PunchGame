@@ -52,7 +52,6 @@ class Player(pygame.sprite.Sprite) :
                      "ntrlb" : pygame.image.load("resource/purplerectangle.png") 
                     }
 
-    crash_sound = pygame.mixer.Sound("resource/crash.mp3")
 
     def __init__(self, health, is_right) :
         print("New player")
@@ -109,7 +108,6 @@ class Player(pygame.sprite.Sprite) :
         else :
             return
             
-        pygame.mixer.Sound.play(Player.crash_sound)
         # Hard collision detection
         xpos = self.rect.x if self.direction == -1 else self.rect.x + self.rect.width
 
