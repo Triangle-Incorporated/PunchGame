@@ -36,6 +36,13 @@ def sign_window_dest() :
     w_signup.hide()
     app.show()
 
+def end_of_game(lr) :
+    """ Display pop up depending on who won """
+    if lr :
+        app.info("Left side wins!", "The left player wins the game!!")
+    else :
+        app.info("Right side wins!", "The right player wins the game!!")
+
 def login() :
     """ Check if login is valid """
     name = i_name.value
@@ -45,11 +52,7 @@ def login() :
         for row in db :
             if [name, passw] == row :
                 dest_gui()
-                lr = gamelogic.gameLoop()
-                if lr :
-                    app.info("Left side wins!", "The left player wins the game!!")
-                else :
-                    app.info("Right side wins!", "The right player wins the game!!")
+                end_of_game(gamelogic.gameLoop())
                 init_gui()
                 return
 
@@ -94,11 +97,7 @@ def signup() :
     # Start game
     app.info("Account Creation Successful", "Your account was created succesfully! Enjoy playing Punch Game!")
     dest_gui()
-    lr = gamelogic.gameLoop()
-    if lr :
-        app.info("Left side wins!", "The left player wins the game!!")
-    else :
-        app.info("Right side wins!", "The right player wins the game!!")
+    end_of_game(gamelogic.gameLoop())
     init_gui()
 
 #/////////// Main Window /////////////////////
