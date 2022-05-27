@@ -6,6 +6,8 @@
 
 import gamelogic
 
+print("I/O handlers loaded")
+
 def sendsignal(sig) :
     """ Send input signal to game loop to handle """
     if gamelogic.trackEvents :

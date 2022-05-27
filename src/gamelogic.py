@@ -2,7 +2,7 @@
 
 import pygame
 
-print("Game logic works")
+print("Game logic loaded")
 
 # Array to store io events
 ioevents = []
@@ -59,7 +59,7 @@ class Player(pygame.sprite.Sprite) :
         
         self.image = Player.texture_table["nml"]
         self.rect = self.image.get_rect()
-        self.rect = self.rect.move(600 if is_right else 100, 240) # Set y to 250 to put character on the bottom of the screen
+        self.rect = self.rect.move(600 if is_right else 100, 240) # bottom = 250
         self.direction = -1
         self.health = health
         self.health_bar = HealthBar(health, is_right)

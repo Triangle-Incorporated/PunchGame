@@ -9,6 +9,7 @@ import gamelogic
 #
 
 app = gui.App("Punch Game!", bg = "#ffffff")
+print("Display loaded")
 
 def init_gui() :
     """ Start displaying the gui """
