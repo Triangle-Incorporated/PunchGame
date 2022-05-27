@@ -127,12 +127,13 @@ play_button.bg = ("#90EE90")
 #// la la la la :)
 
 #/////////// Signup Window /////////////////////
-w_signup = gui.Window(app, "Signup")
+w_signup = gui.Window(app, "Signup", bg = "#ffffff")
 
 # Title
 st_box = gui.Box(w_signup, layout = "grid")
 st_title = gui.Text(st_box, text = "Signup", grid = [0, 0])
 st_menu = gui.PushButton(st_box, text = "Menu", grid = [1, 0], command = sign_window_dest)
+st_menu.bg = "#ffffff"
 
 # Signup
 sb_signup = gui.Box(w_signup, layout = "grid")
@@ -144,6 +145,7 @@ st_conf = gui.Text(sb_signup, grid = [0, 2], text = "Confirm: ")
 si_conf = gui.TextBox(sb_signup, grid = [1, 2], hide_text = True)
 
 sbtn_play = gui.PushButton(sb_signup, grid = [0, 3], text = "Signup", command = signup)
+sbtn_play.bg = "#ffffff"
 
 #/////////// Signup Window /////////////////////
     
