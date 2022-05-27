@@ -117,15 +117,13 @@ class Player(pygame.sprite.Sprite) :
             
         # Hard collision detection
         xpos = self.rect.x if self.direction == -1 else self.rect.x + self.rect.width
-
+ 
         self.image = Player.texture_table[type]
         
         hurt_line = (xpos, self.rect.y + 10, xpos + Player.range_table[type] * self.direction, self.rect.y)
         if other.rect.clipline(hurt_line) :
-            print("HIT!!")
             other.set_health(Player.damage_table[type])
             return
-        print("MISS!")
 
     def ai_decision(self, other) :
         """ Decide what the NPC should do """
