@@ -14,7 +14,6 @@ height = 450
 
 pygame.init()
 clock = pygame.time.Clock()
-
 from handleio import checkInputs, ledOutput
 
 class HealthBar() :
@@ -52,6 +51,8 @@ class Player(pygame.sprite.Sprite) :
                      "downb" : pygame.image.load("resource/greenrectangle.png"), 
                      "ntrlb" : pygame.image.load("resource/purplerectangle.png") 
                     }
+
+    crash_sound = pygame.mixer.Sound("resource/crash.mp3")
 
     def __init__(self, health, is_right) :
         print("New player")
@@ -107,7 +108,8 @@ class Player(pygame.sprite.Sprite) :
             self.cooldown = Player.cooldown_table[type]
         else :
             return
-        
+            
+        pygame.mixer.Sound.play(Player.crash_sound)
         # Hard collision detection
         xpos = self.rect.x if self.direction == -1 else self.rect.x + self.rect.width
 
@@ -119,6 +121,10 @@ class Player(pygame.sprite.Sprite) :
             other.set_health(Player.damage_table[type])
             return
         print("MISS!")
+
+    def ai_decisions(self, other) :
+        """ Decide what the NPC should do """
+        
 
 
 def gameLoop() :
@@ -208,5 +214,5 @@ def gameLoop() :
     if player.health <= 0 :
         return 1
     return 0
-
+    
 # la fin :)
