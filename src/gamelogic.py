@@ -1,6 +1,7 @@
 # Handle Game
 
 import pygame
+from random import randrange
 
 print("Game logic loaded")
 
@@ -52,6 +53,9 @@ class Player(pygame.sprite.Sprite) :
                      "ntrlb" : pygame.image.load("resource/purplerectangle.png") 
                     }
 
+    index_to_word = { 0 : "upb", 1 : "downb", 2 : "ntrlb" }
+    
+
 
     def __init__(self, health, is_right) :
         print("New player")
@@ -65,6 +69,7 @@ class Player(pygame.sprite.Sprite) :
         self.health_bar = HealthBar(health, is_right)
         self.vel_x = 0
         self.cooldown = 0
+        self.ai_reaction = 0
 
     def set_vel(self, new) :
         """ Update velocity and direction """
@@ -93,6 +98,7 @@ class Player(pygame.sprite.Sprite) :
             self.cooldown -= 1
         else :
             self.image = Player.texture_table["nml"]
+        self.ai_reaction -= 1
 
 
     def draw(self, screen) :
@@ -105,6 +111,7 @@ class Player(pygame.sprite.Sprite) :
         # Set punch cooldown
         if self.cooldown == 0 :
             self.cooldown = Player.cooldown_table[type]
+            #self.ai_reaction = self.cooldown + 8
         else :
             return
             
@@ -120,9 +127,28 @@ class Player(pygame.sprite.Sprite) :
             return
         print("MISS!")
 
-    def ai_decisions(self, other) :
+    def ai_decision(self, other) :
         """ Decide what the NPC should do """
+
+        if self.ai_reaction > 0 :
+            return
         
+        # Walking
+        if self.rect.x + self.rect.width < other.rect.x :
+            self.set_vel(10)
+        elif self.rect.x > other.rect.x + other.rect.width :
+            self.set_vel(-10)
+        else :
+            self.set_vel(0)
+        self.ai_reaction = 12
+
+        # Punching
+        if abs(self.rect.x - other.rect.x) < 180 :
+            type = randrange(0, 4)
+            if type == 3 :
+                return
+            else :
+                self.punch(other, Player.index_to_word[type])
 
 
 def gameLoop() :
@@ -189,6 +215,8 @@ def gameLoop() :
                 player.punch(enemy, event)
             else :
                 player.set_vel(0)
+
+        enemy.ai_decision(player)
 
 
         # Check for end of game
