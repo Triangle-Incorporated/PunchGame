@@ -46,11 +46,11 @@ class Player(pygame.sprite.Sprite) :
     range_table = { "upb" : 60, "downb" : 120, "ntrlb" : 90 }
     cooldown_table = { "upb" : 10, "downb" : 6, "ntrlb" : 8 }
     texture_table = { 
-                     "nml" : pygame.image.load("resource/whiterectangle.png"), 
+                     "nml" : pygame.image.load("resource/playeridle.png"), 
                      "hurt" : pygame.image.load("resource/redrectangle.png"), 
-                     "upb" : pygame.image.load("resource/bluerectangle.png"), 
-                     "downb" : pygame.image.load("resource/greenrectangle.png"), 
-                     "ntrlb" : pygame.image.load("resource/purplerectangle.png") 
+                     "upb" : pygame.image.load("resource/playeruppercut.png"), 
+                     "downb" : pygame.image.load("resource/playerkick.png"), 
+                     "ntrlb" : pygame.image.load("resource/playerpunch.png") 
                     }
 
     index_to_word = [ "upb", "downb", "ntrlb" ]
