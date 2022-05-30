@@ -15,11 +15,11 @@ def sendsignal(sig) :
 
 def ledOutput(health) :
     """ Turn on different leds depending on alert type """
-    if health <= 50 and health > 20:
+    if health <= 70 and health > 40:
         explorerhat.output.one.blink(1, 1)
-    elif health <= 20 and health > 10:
+    elif health <= 40 and health > 20:
         explorerhat.output.one.blink(0.5, 0.5)
-    elif health <= 10 and health > 0:
+    elif health <= 20 and health > 0:
         explorerhat.output.one.blink(0.25, 0.25)
     if health <= 0:
         explorerhat.output.one.off()
