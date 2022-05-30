@@ -2,7 +2,7 @@
 
 # |  Comment this out when working on Replit
 # V
-# import explorerhat
+import explorerhat
 
 import gamelogic
 
