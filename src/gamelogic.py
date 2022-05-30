@@ -90,7 +90,15 @@ class Player(pygame.sprite.Sprite) :
     def update(self) :
         """ Change sprite's position """
         pygame.sprite.Sprite.update(self)
-        self.rect = self.rect.move(self.vel_x, 0)
+
+        # bounds checking
+        if self.direction == 1 :
+            if self.rect.x + self.rect.width + self.vel_x < 800 :
+               self.rect = self.rect.move(self.vel_x, 0) 
+        else :
+            if self.rect.x + self.vel_x > 0 :
+                self.rect = self.rect.move(self.vel_x, 0)
+        
         self.health_bar.update(self.health)
         if self.cooldown > 0 :
             self.cooldown -= 1
