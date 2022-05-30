@@ -161,8 +161,8 @@ app.when_key_pressed = handle_enter_main
 w_signup.when_key_pressed = handle_enter_signup
 
 #/////////// Signup Window /////////////////////
-
-# 
+    
+#
 # End GUI code here #
 #
 
