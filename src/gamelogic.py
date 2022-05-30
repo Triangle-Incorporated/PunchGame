@@ -76,10 +76,8 @@ class Player(pygame.sprite.Sprite) :
         self.vel_x = new
         if self.vel_x > 0 :
             self.direction = 1
-            self.image = pygame.transform.flip(self.image, True, False)
         elif self.vel_x < 0 :
             self.direction = -1
-            self.image = pygame.transform.flip(self.image, True, False)
         # Do nothing to direction if velocity is zero
 
     def set_health(self, dmg) :
@@ -103,7 +101,10 @@ class Player(pygame.sprite.Sprite) :
 
     def draw(self, screen) :
         """ Draw the sprite """
-        screen.blit(self.image, self.rect)
+        image = self.image
+        if self.direction == -1 :
+            image = pygame.transform.flip(self.image, True, False)
+        screen.blit(image, self.rect)
         self.health_bar.draw(screen)
     
     def punch(self, other, type):
@@ -217,7 +218,6 @@ def gameLoop() :
                 player.set_vel(0)
 
         enemy.ai_decision(player)
-
 
         # Check for end of game
         if player.health <= 0 or enemy.health <= 0 :
