@@ -8,15 +8,6 @@ import gamelogic
 # Put GUI code here
 #
 
-# Title
-b_title = gui.Box(app, layout = "grid")
-t_title = gui.Text(b_title, text = "Welcome to Punch Game!", grid = [0, 0])
-btn_title = gui.PushButton(b_title, text = "Quit", command = app.destroy, grid = [1, 0])
-
-
-# Play
-playButton = gui.PushButton(app, text = "Play", command = gamelogic.gameLoop)
-
 app = gui.App("Punch Game!", bg = "#ffffff")
 print("Display loaded")
 
@@ -171,7 +162,7 @@ w_signup.when_key_pressed = handle_enter_signup
 
 #/////////// Signup Window /////////////////////
 
-#
+# 
 # End GUI code here #
 #
 
