@@ -15,7 +15,6 @@ height = 450
 
 pygame.init()
 clock = pygame.time.Clock()
-
 from handleio import checkInputs, ledOutput
 
 class HealthBar() :

@@ -29,6 +29,7 @@ def ledOutput(health) :
 # Write handlers here
 #
 
+
 def checkInputs() :
     """ Check joystick and buttons for input """
     j_x = explorerhat.analog.two.read()
