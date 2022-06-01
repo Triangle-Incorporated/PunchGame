@@ -244,7 +244,8 @@ def gameLoop() :
     trackEvents = False
     pygame.display.set_mode((1,1))
     print("Closing game loop")
-   
+
+	ledOutput(player.health)
     if player.health <= 0 :
         return 1
     return 0
