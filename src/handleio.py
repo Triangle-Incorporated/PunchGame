@@ -21,7 +21,7 @@ def ledOutput(health) :
         explorerhat.output.one.blink(0.5, 0.5)
     elif health <= 20 and health > 0:
         explorerhat.output.one.blink(0.25, 0.25)
-    if health <= 0:
+    elif health <= 0:
         explorerhat.output.one.off()
     else:
         explorerhat.output.one.on()
