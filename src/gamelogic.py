@@ -184,7 +184,7 @@ def gameLoop() :
             
             if event.type == pygame.QUIT :
                 running = False
-        """#/////// THIS CODE IS FOR USING PYGAME WITHOUT A CONTROLLER /////////
+        #/////// THIS CODE IS FOR USING PYGAME WITHOUT A CONTROLLER /////////
             if event.type == pygame.KEYDOWN :
                 if event.key == pygame.K_LEFT :
                     ioevents.append("lleft")
@@ -204,7 +204,7 @@ def gameLoop() :
                 ioevents.append("downb")
             else :
                 ioevents.append("ntrlb")
-        """#/////// END OF CODE FOR USING PYGAME WITHOUT A CONTROLLER /////////
+        #/////// END OF CODE FOR USING PYGAME WITHOUT A CONTROLLER /////////
 
         # Handle events
         for event in ioevents :
