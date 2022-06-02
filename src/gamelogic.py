@@ -47,7 +47,7 @@ class Player(pygame.sprite.Sprite) :
     cooldown_table = { "upb" : 10, "downb" : 6, "ntrlb" : 8 }
     texture_table = { 
                      "nml" : pygame.image.load("resource/playeridle.png"), 
-                     "hurt" : pygame.image.load("resource/redrectangle.png"), 
+                     "hurt" : pygame.image.load("resource/playerhurt.png"), 
                      "upb" : pygame.image.load("resource/playeruppercut.png"), 
                      "downb" : pygame.image.load("resource/playerkick.png"), 
                      "ntrlb" : pygame.image.load("resource/playerpunch.png") 
